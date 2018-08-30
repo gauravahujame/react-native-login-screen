@@ -1,2 +1,2 @@
-export { default as PlaylistScreen } from './playlist';
-export { default as PlayerScreen } from './player';
+export { default as LoginScreen } from './login';
+export { default as HomeScreen } from './home';
