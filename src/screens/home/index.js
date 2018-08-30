@@ -16,6 +16,7 @@ export default class HomeScreen extends React.Component {
         this.state = {
             username: null,
             password: null,
+            unreadCount: 2,
             emails: [
                 {
                     sender: 'Suraj Sundariya',
@@ -59,6 +60,41 @@ export default class HomeScreen extends React.Component {
                     snippet: 'In order to provide a better experience to our communi...',
                     unread: false
                 },
+                {
+                    sender: 'React Status',
+                    subject: 'Why I Love React Patterns So Much',
+                    date: '2 days ago',
+                    snippet: `This week's react news #102`,
+                    unread: true
+                },
+                {
+                    sender: 'GitKraken',
+                    subject: 'Team Pricing Change',
+                    date: '2 days ago',
+                    snippet: 'Lock in our lowest Gitkraken Pro team prices',
+                    unread: false
+                },
+                {
+                    sender: 'ZEIT TEAM',
+                    subject: 'ZEIT on Spectrum',
+                    date: '3 days ago',
+                    snippet: 'In order to provide a better experience to our communi...',
+                    unread: false
+                },
+                {
+                    sender: 'Medium Daily Digest',
+                    subject: 'The simple art of not being miserable',
+                    date: 'yesterday',
+                    snippet: `Today's Highlights The simple art of not being miserable`,
+                    unread: false
+                },
+                {
+                    sender: 'GitKraken',
+                    subject: 'Team Pricing Change',
+                    date: '2 days ago',
+                    snippet: 'Lock in our lowest Gitkraken Pro team prices',
+                    unread: false
+                },
             ]
         }
     }
@@ -70,7 +106,6 @@ export default class HomeScreen extends React.Component {
     }
 
     render() {
-        // const { accentColor, activeIndex, activeTitle, artist, playing, shuffle, repeat, menuVisible } = this.state;
         const { navigation } = this.props;
         return (
             <View
@@ -81,26 +116,23 @@ export default class HomeScreen extends React.Component {
                     barStyle="light-content"
                     backgroundColor="rgba(0, 0, 0, 0.30)" />
                 <View style={{ padding: 30 }}>
-                    <View style={{ alignSelf: 'center', alignItems: 'flex-start' }}>
-                        {/* <Icon
-                            name="bell"
-                            type="feather"
-                            color="blue"
-                            size={28}
-                            containerStyle={{ marginBottom: 5 }} /> */}
+                    <View style={{ alignSelf: 'flex-start', alignItems: 'flex-start' }}>
                         <Avatar
                             small
                             rounded
                             source={{ uri: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg" }}
-                            onPress={() => console.log("Works!")}
                             activeOpacity={0.7} />
                         <Text h1 style={{ fontWeight: '500', fontSize: 20, color: 'black' }}>Hello Gaurav</Text>
-                        <Text h1 style={{ fontWeight: '400', fontSize: 20 }}>{`you have 2 new\nimportant emails today`}</Text>
+                        <Text h1 style={{ fontWeight: '400', fontSize: 20 }}>{`you have `}
+                            <Text h1 style={{ fontWeight: '400', fontSize: 20, color: 'blue' }}>{this.state.unreadCount}</Text>
+                            <Text h1 style={{ fontWeight: '400', fontSize: 20 }}>{` new\nimportant emails today`}</Text>
+                        </Text>
                     </View>
                     <FlatList
                         style={{ marginTop: 20 }}
                         data={this.state.emails}
                         keyExtractor={(item, index) => index.toString()}
+                        showsVerticalScrollIndicator={false}
                         renderItem={({ item }) => <EmailItem email={item} />} />
                 </View>
             </View>
